@@ -21,11 +21,11 @@ const saveData = () => {
 // }
 // deleteData()
 
-const editData = () => {
-    firebase.database().ref('student/-MnjrM00oHMq3VIAm0Jn').set({
-        key: 'jkasbdsakbdaskjbd',
-        name: 'Hamza',
-        roll: 2917
-    })
-}
-editData();
+// const editData = () => {
+//     firebase.database().ref('student/-MnjrM00oHMq3VIAm0Jn').set({
+//         key: 'jkasbdsakbdaskjbd',
+//         name: 'Hamza',
+//         roll: 2917
+//     })
+// }
+// editData();
