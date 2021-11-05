@@ -1,56 +1,31 @@
-// function saveData() {
-//     const name = document.getElementById('name');
-//     const roll = document.getElementById('roll');
-//     var key = firebase.database().ref("student").push().key
-//     const student = {
-//         name: name.value,
-//         roll: roll.value,
-//         key: key,
-
-//     }
-//     firebase.database().ref('student/' + key).set(student);
-//     function getFirebaseData(){
-//         firebase.database().ref('student/-Mn__vlFyO7YjsIQVnQn' ).set({
-//             key: "-Mn__vlFyO7YjsIQVnQn",
-//             name: 'mUbashir',
-//             roll: 123 
-//         })
-//     }
-//     getFirebaseData()
-// }
-
-function saveData() {
+const saveData = () => {
     const name = document.getElementById('name');
     const roll = document.getElementById('roll');
-    const key = firebase.database().ref('student').push().key
+    const key = firebase.database().ref('student').push().key;
     const student = {
         name: name.value,
         roll: roll.value,
         key: key,
     }
-    firebase.database().ref('student/' + key).set(student)
-    
+
+    firebase.database().ref('student/' + key).set(student);
 }
 
-// function getData() {
-//     firebase.database().ref('student').on('child_added', function (data) {
-//         console.log(data.val());
-//     })
-
+// const getData = () => {
+//     firebase.database().ref('student').on('child_added', (e)=>{console.log(e.val())})
 // }
 // getData()
 
-// function deleteData () {
-//     firebase.database().ref('student/-MnddwqP_E09Am2TOhwq').remove()
+// const deleteData = () => {
+//     firebase.database().ref('student').remove()
 // }
-// deleteData();
+// deleteData()
 
-function editData() {
-    firebase.database().ref('student/-MndfYeBWCl7C7nrTyPm').set({
-        key: 'asjdlbasldnasld',
-        name: 'yahya',
-        roll: '8127'
+const editData = () => {
+    firebase.database().ref('student/-MnjrM00oHMq3VIAm0Jn').set({
+        key: 'jkasbdsakbdaskjbd',
+        name: 'Hamza',
+        roll: 2917
     })
 }
-
-editData()
+editData();
