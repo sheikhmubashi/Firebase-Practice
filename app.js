@@ -1,31 +1,41 @@
-const saveData = () => {
-    const name = document.getElementById('name');
-    const roll = document.getElementById('roll');
-    const key = firebase.database().ref('student').push().key;
-    const student = {
-        name: name.value,
-        roll: roll.value,
-        key: key,
-    }
+const list = document.getElementById('list');
 
-    firebase.database().ref('student/' + key).set(student);
+function addItem() {
+    const todoItme = document.getElementById('todo_items');
+
+    //creating li
+    const li = document.createElement('li');
+    const liText = document.createTextNode(todoItme.value);
+    li.appendChild(liText);
+
+    //creating delete button
+    var button = document.createElement('button');
+    var buttonText = document.createTextNode('Delete');
+    button.setAttribute('onclick', "deleteItem(this)");
+    button.appendChild(buttonText);
+    //edit btn
+    var editBtn = document.createElement('button');
+    var editBtnText = document.createTextNode('Edit');
+    editBtn.appendChild(editBtnText);
+    editBtn.setAttribute('onclick', 'editBtn(this)')
+    li.appendChild(editBtn);
+    li.appendChild(button);
+    list.appendChild(li);
+    todoItme.value = ''
+
+
 }
 
-// const getData = () => {
-//     firebase.database().ref('student').on('child_added', (e)=>{console.log(e.val())})
-// }
-// getData()
+function deleteItem(e) {
+    e.parentNode.remove()
+}
 
-// const deleteData = () => {
-//     firebase.database().ref('student').remove()
-// }
-// deleteData()
+function deleteAll() {
+    list.innerHTML = ''
+}
 
-// const editData = () => {
-//     firebase.database().ref('student/-MnjrM00oHMq3VIAm0Jn').set({
-//         key: 'jkasbdsakbdaskjbd',
-//         name: 'Hamza',
-//         roll: 2917
-//     })
-// }
-// editData();
+function editBtn(e) {
+    const val = e.parentNode.firstChild.nodeValue;
+    const editValue = prompt('Enter Edit Value', val);
+    e.parentNode.firstChild.nodeValue = editValue;
+}
