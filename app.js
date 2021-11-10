@@ -21,12 +21,14 @@ firebase.database().ref('todos').on('child_added', function (data) {
     var button = document.createElement('button');
     var buttonText = document.createTextNode('Delete');
     button.setAttribute('onclick', "deleteItem(this)");
+    button.setAttribute('id', data.val().key)
     button.appendChild(buttonText);
     //edit btn
     var editBtn = document.createElement('button');
     var editBtnText = document.createTextNode('Edit');
     editBtn.appendChild(editBtnText);
     editBtn.setAttribute('onclick', 'editBtn(this)')
+    editBtn.setAttribute('id', data.val().key)
 
 
     li.appendChild(editBtn);
@@ -41,16 +43,20 @@ firebase.database().ref('todos').on('child_added', function (data) {
 todoItme.value = ''
 
 
-// function deleteItem(e) {
-//     e.parentNode.remove()
-// }
+function deleteItem(e) {
+    console.log(e.id)
+    firebase.database().ref(`todos/  ${e.id}`).remove();
+    e.parentNode.remove()
+}
 
-// function deleteAll() {
-//     list.innerHTML = ''
-// }
+function deleteAll() {
+    list.innerHTML = ''
+}
 
-// function editBtn(e) {
-//     const val = e.parentNode.firstChild.nodeValue;
-//     const editValue = prompt('Enter Edit Value', val);
-//     e.parentNode.firstChild.nodeValue = editValue;
-// }
+function editBtn(e) {
+    console.log(e.id)
+    // const val = e.parentNode.firstChild.nodeValue;
+    // const editValue = prompt('Enter Edit Value', val);
+    // e.parentNode.firstChild.nodeValue = editValue;
+}
+
